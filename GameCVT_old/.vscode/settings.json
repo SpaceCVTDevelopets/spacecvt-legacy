@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "backupVR.sln"
+    "dotnet.defaultSolution": "GameCVT_old.sln"
 }
