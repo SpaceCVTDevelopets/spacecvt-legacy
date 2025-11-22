@@ -1,0 +1,12 @@
+{
+    "quest1": 0,
+    "quest2": 20,
+    "quest3": 0,
+    "quest4": 0,
+    "quest5": 0,
+    "quest6": 0,
+    "quest7": 0,
+    "quest8": 0,
+    "scoreFinal": 0,
+    "jogo": 0
+}
