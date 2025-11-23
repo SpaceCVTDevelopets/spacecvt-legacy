@@ -16,6 +16,8 @@ public class ShowInfo : MonoBehaviour
     public TextMeshPro planetContent;
     public GameObject Planet;
 
+    private ScoreManager scoreManager;
+
 
     private float Magnitude;
     private float AltitudeGeometrica;
@@ -24,11 +26,18 @@ public class ShowInfo : MonoBehaviour
 
     private int DistanciaTerra;
 
+
+
+    void Awake()
+    {
+        scoreManager = GameObject.Find("GameController").GetComponent<ScoreManager>();
+    }
+
     void Start()
     
     {
-
         StartCoroutine(pegaDados()); // coroutine � parecido com o async
+        //scoreManager.Pontos[2] = 3;
     }
     
 
