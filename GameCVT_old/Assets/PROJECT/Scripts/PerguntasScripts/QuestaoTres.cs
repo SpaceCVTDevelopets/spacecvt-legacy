@@ -40,7 +40,7 @@ public class QuestaoTres: QuestaoMae
 
        
         if ( dropdown.value == 2 ) {
-            return 5;
+            return 20;
         }
 
         return 0;

@@ -39,7 +39,7 @@ public class QuestaoQuatro : QuestaoMae
 
 
         if ( verificaBotao(slider) ) {
-            perguntas.GetComponent<Pergunta>().play(5);
+            perguntas.GetComponent<Pergunta>().play(4);
 
             return;
         }
@@ -67,7 +67,7 @@ public class QuestaoQuatro : QuestaoMae
             int altitudePlaneta = planetInfo.GetAltitudeGeo();
             
             if ( slider.value == altitudePlaneta) {
-                Pontuacao = 5;
+                Pontuacao = 20;
 
             } else {
                 Pontuacao = 0;

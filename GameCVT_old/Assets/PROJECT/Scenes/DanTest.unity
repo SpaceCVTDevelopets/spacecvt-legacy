@@ -475,6 +475,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16809ed3baa3d2341b75ec4c0aa874d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &72750525 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3160956962107405373, guid: 5ce5fe73f506a4b478a2b95cd9935e44, type: 3}
+  m_PrefabInstance: {fileID: 2873186494110447215}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &110992893
 GameObject:
   m_ObjectHideFlags: 0
@@ -6877,6 +6882,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Renderer: {fileID: 1854549105}
   m_MaterialIndex: 0
+--- !u!1 &1819627117 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6351830305712387000, guid: 5ce5fe73f506a4b478a2b95cd9935e44, type: 3}
+  m_PrefabInstance: {fileID: 2873186494110447215}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1839276102 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7412079985589468698, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
@@ -9501,6 +9511,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8828195499786725770, guid: 5ce5fe73f506a4b478a2b95cd9935e44, type: 3}
+      propertyPath: respostas.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828195499786725770, guid: 5ce5fe73f506a4b478a2b95cd9935e44, type: 3}
+      propertyPath: respostas.Array.data[0]
+      value: 
+      objectReference: {fileID: 1819627117}
+    - target: {fileID: 8828195499786725770, guid: 5ce5fe73f506a4b478a2b95cd9935e44, type: 3}
+      propertyPath: respostas.Array.data[1]
+      value: 
+      objectReference: {fileID: 72750525}
     - target: {fileID: 8828413467414993711, guid: 5ce5fe73f506a4b478a2b95cd9935e44, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
