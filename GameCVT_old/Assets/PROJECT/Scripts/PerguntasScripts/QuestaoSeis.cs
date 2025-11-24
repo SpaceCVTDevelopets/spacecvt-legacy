@@ -27,6 +27,7 @@ public class QuestaoSeis : QuestaoMae
     void Update()
     {
         if (verificaContent()){
+            Debug.Log(Pontuacao);
             perguntas.GetComponent<Pergunta>().play(6);
             return;
         }

@@ -32,7 +32,7 @@ public class Jogador
 
 
 
-    public Jogador(int quest1 = 0, int quest2 = 0, int quest3 = 0, int quest4 = 0, int quest5 = 0, int quest6 = 0, int quest7 = 0, int quest8 = 0)
+    public Jogador(int quest1 = 0, int quest2 = 0, int quest3 = 0, int quest4 = 0, int quest5 = 0, int quest6 = 0)
     {
         this.quest1 = quest1;
         this.quest2 = quest2;
@@ -40,8 +40,7 @@ public class Jogador
         this.quest4 = quest4;
         this.quest5 = quest5;
         this.quest6 = quest6;
-        this.quest7 = quest7;
-        this.quest8 = quest8;
+
     }
 
 
@@ -81,25 +80,14 @@ public class Jogador
         set { Quest6 = value; }
     }
 
-    public int Quest7
-    {
-        get { return Quest7; }
-        set { Quest7 = value; }
-    }
 
-
-    public int Quest8
-    {
-        get { return Quest8; }
-        set { Quest8 = value; }
-    }
 
 
 
 
     public int pontuacaoTotal()
     {
-        scoreFinal = quest1 + quest2 + quest3 + quest4 + quest5 + quest6 + quest7 + quest8;
+        scoreFinal = quest1 + quest2 + quest3 + quest4 + quest5 + quest6 ;
         return scoreFinal;
     }
 

@@ -8,26 +8,21 @@ public class MostrarPontuacao : MonoBehaviour
 
     public Button botao;
     public GameObject perguntas;
-    private bool Acabou = false;
 
 
-    void Update()
+
+
+    void Start()
     {
-        if ( verificaBotao(botao) ){
-            return;
-        }
-
+        verificaBotao();
     }
 
 
-    public bool verificaBotao(Button botao){
+    public void verificaBotao(){
 
         botao.onClick.AddListener(delegate {
             perguntas.GetComponent<Pergunta>().play(7);
-            Acabou = true;
         });
 
-        return Acabou;
-        
     }
 }

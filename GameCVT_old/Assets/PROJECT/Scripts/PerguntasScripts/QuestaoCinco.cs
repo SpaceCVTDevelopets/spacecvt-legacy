@@ -26,7 +26,9 @@ public class QuestaoCinco : QuestaoMae
     void Update()
     {
         if (verificaContent()){
+            Debug.Log(Pontuacao);
             perguntas.GetComponent<Pergunta>().play(5);
+
             return;
         }
     }
@@ -43,7 +45,7 @@ public class QuestaoCinco : QuestaoMae
 
             if (toggles[j].isOn){
                 if (j == 2){
-                    Pontuacao = 25;
+                    Pontuacao = 10;
                     return true;
                 }  
 

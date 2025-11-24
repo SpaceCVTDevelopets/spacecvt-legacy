@@ -53,9 +53,10 @@ public class Pergunta : MonoBehaviour
 
             //ativar tela de fim de jogo
 
-            listPerguntas[pergunta-1].SetActive(false);
-            listPerguntas[pergunta].SetActive(true);
-            listPerguntas[pergunta].GetComponentsInChildren<JogadorController>()[0].SetAtivo(true);
+            listPerguntas[pergunta-1].SetActive(false); //apague a última
+            endGamePanel.SetActive(true); // ative a tela de fim de jogo
+
+            endGamePanel.GetComponentsInChildren<JogadorController>()[0].criaJogador();
 
         } else if (pergunta == 7) {
             // se for mostrar pontuação
@@ -65,7 +66,7 @@ public class Pergunta : MonoBehaviour
             goToPontuacaoPanel.SetActive(false); // desativa o painel de skip para a pontuação
             endGamePanel.SetActive(true);  // ativa o painel de pontuação
 
-            goToPontuacaoPanel.GetComponentsInChildren<JogadorController>()[0].SetAtivo(true);
+            endGamePanel.GetComponentsInChildren<JogadorController>()[0].criaJogador();
         } else {
             
             listPerguntas[pergunta-1].SetActive(false);

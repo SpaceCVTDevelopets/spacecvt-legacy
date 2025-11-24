@@ -13,21 +13,6 @@ public class JogadorController : MonoBehaviour
 
     public List<GameObject> perguntas = new List<GameObject>();
 
-    void Update()
-    {
-
-
-        if ( Ativo ){
-            
-            Jogador player = criaJogador();
-            Ativo = false;
-            return;
-
-        }
-
-    }
-
-
 
 
     public Jogador criaJogador(){
@@ -38,9 +23,7 @@ public class JogadorController : MonoBehaviour
             perguntas[2].GetComponent<QuestaoMae>().Pontuacao,
             perguntas[3].GetComponent<QuestaoMae>().Pontuacao,
             perguntas[4].GetComponent<QuestaoMae>().Pontuacao,
-            perguntas[5].GetComponent<QuestaoMae>().Pontuacao,
-            perguntas[6].GetComponent<QuestaoMae>().Pontuacao,
-            perguntas[7].GetComponent<QuestaoMae>().Pontuacao
+            perguntas[5].GetComponent<QuestaoMae>().Pontuacao
         );
 
 
@@ -49,9 +32,7 @@ public class JogadorController : MonoBehaviour
 
         if (pontos != 0){
 
-            for(int i = 1; i <= pontos; i++){
-                textoFinal.text = i+" pontos";
-            } 
+            textoFinal.text = pontos+" pontos";
 
         } else {
             textoFinal.text = "0 pontos";
@@ -62,13 +43,6 @@ public class JogadorController : MonoBehaviour
 
     }
 
-
-    public bool GetAtivo(){
-        return Ativo;
-    }
-    public void SetAtivo(bool ativo){
-        Ativo = ativo;
-    }
 
 
 
