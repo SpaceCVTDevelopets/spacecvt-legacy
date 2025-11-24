@@ -2,19 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class QuestaoSeis : QuestaoMae
 {
-
+    // Start is called before the first frame update
     public GameObject perguntas;
     private List<Toggle> toggles = new List<Toggle>();
+
+
 
 
     void Start()
     {
         Transform content = transform;
         Pontuacao = 0;
-        for (int i = 1; i < content.childCount; i++){
+        for (int i = 0; i < content.childCount - 1; i++){
 
             Transform listItem = content.Find("ListItem"+i+"/OffsetAnchor/BooleanToggle");
             toggles.Add(listItem.GetComponent<Toggle>());
@@ -42,8 +43,8 @@ public class QuestaoSeis : QuestaoMae
         for (int j = 0; j < toggles.Count; j++){
 
             if (toggles[j].isOn){
-                if (j == 2){
-                    Pontuacao = 25;
+                if (j == 1){
+                    Pontuacao = 10;
                     return true;
                 }  
 

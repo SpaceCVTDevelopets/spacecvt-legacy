@@ -6,23 +6,38 @@ using UnityEngine.UI;
 public class Pergunta : MonoBehaviour
 {
 
-    private List<GameObject> perguntas = new List<GameObject>();
+    [SerializeField] private List<GameObject> listPerguntas = new List<GameObject>();
+    private GameObject endGamePanel;
+    private GameObject goToPontuacaoPanel;
+    public GameObject perguntas;
+
+
+    void Awake()
+    {
+        endGamePanel =  GameObject.Find("EndGame");
+        goToPontuacaoPanel = GameObject.Find("GoToPontuacao");
+        
+    }
+
 
 
     void Start()
     {
 
+        perguntas = GameObject.Find("Perguntas");
+        
         for (int i = 0; i < transform.childCount; i++)
         {
             Transform pergunta = transform.GetChild(i);
-            perguntas.Add(pergunta.gameObject);
-            if (i != 9) { 
-                pergunta.gameObject.SetActive(false);
-            } else {
-                pergunta.gameObject.SetActive(true);
-            }
+            listPerguntas.Add(pergunta.gameObject);
 
+            if (i != 0)
+            {
+                pergunta.gameObject.SetActive(false); // deixa todas as perguntas invisíveis
+            } 
 
+            endGamePanel.SetActive(false);
+            
         }
 
         play(0);
@@ -32,31 +47,29 @@ public class Pergunta : MonoBehaviour
     public void play(int pergunta){
 
         if (pergunta == 0){
-            perguntas[pergunta].SetActive(true);
+            listPerguntas[pergunta].SetActive(true);
 
-        } else if ( pergunta == 8 ) {
+        } else if ( pergunta == 6 ) {
 
             //ativar tela de fim de jogo
 
-            perguntas[pergunta-1].SetActive(false);
-            perguntas[pergunta].SetActive(true);
-            perguntas[pergunta].GetComponentsInChildren<JogadorController>()[0].SetAtivo(true);
+            listPerguntas[pergunta-1].SetActive(false);
+            listPerguntas[pergunta].SetActive(true);
+            listPerguntas[pergunta].GetComponentsInChildren<JogadorController>()[0].SetAtivo(true);
 
-        } else if (pergunta == 9) {
+        } else if (pergunta == 7) {
+            // se for mostrar pontuação
+            
+            perguntas.SetActive(false);
+            
+            goToPontuacaoPanel.SetActive(false); // desativa o painel de skip para a pontuação
+            endGamePanel.SetActive(true);  // ativa o painel de pontuação
 
-            for (int i = 0; i < perguntas.Count; i++){
-                perguntas[i].SetActive(false);
-            }
-
-
-            perguntas[pergunta].SetActive(false);
-            perguntas[pergunta-1].SetActive(true);
-
-            perguntas[pergunta-1].GetComponentsInChildren<JogadorController>()[0].SetAtivo(true);
+            goToPontuacaoPanel.GetComponentsInChildren<JogadorController>()[0].SetAtivo(true);
         } else {
             
-            perguntas[pergunta-1].SetActive(false);
-            perguntas[pergunta].SetActive(true);
+            listPerguntas[pergunta-1].SetActive(false);
+            listPerguntas[pergunta].SetActive(true);
             
 
         }

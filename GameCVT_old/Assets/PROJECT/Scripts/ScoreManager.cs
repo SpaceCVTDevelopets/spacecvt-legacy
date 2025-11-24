@@ -22,20 +22,22 @@ public class ScoreManager : MonoBehaviour
     public List<int> Pontos {
         get => pontos; 
         set => pontos = value;
-        }
+    }
     
 
 
     void Start()
     {
-        SubmitScore();
-        StartCoroutine(GetDataBaseInfo());
+        // SubmitScore();
+        // StartCoroutine(GetDataBaseInfo());
     }
 
     public void SubmitScore()
     {
         StartCoroutine(SendInfoToDataBase());
     }
+
+
 
 
     public IEnumerator GetDataBaseInfo()
@@ -47,6 +49,9 @@ public class ScoreManager : MonoBehaviour
         string res = httpGet.downloadHandler.text;
         Debug.Log(res);
     }
+
+
+
 
 
     private IEnumerator SendInfoToDataBase()

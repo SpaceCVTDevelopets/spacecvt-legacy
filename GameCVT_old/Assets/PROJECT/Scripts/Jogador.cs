@@ -30,7 +30,7 @@ public class Jogador
     [SerializeField]
     private int scoreFinal;
 
-    public int jogo = 0;
+
 
     public Jogador(int quest1 = 0, int quest2 = 0, int quest3 = 0, int quest4 = 0, int quest5 = 0, int quest6 = 0, int quest7 = 0, int quest8 = 0)
     {
@@ -93,26 +93,6 @@ public class Jogador
         get { return Quest8; }
         set { Quest8 = value; }
     }
-
-
-    public void SetJogo(int jogo){
-        this.jogo = jogo;
-    }
-
-
-    public void Save(int player = 0){
-
-        if (jogo != 0){
-            player = jogo;
-        }
-        string json = JsonUtility.ToJson(this, true);
-        string path = Application.dataPath + "/Jogadores/Jogador"+player+".txt";
-        
-        PlayerPrefs.SetString("Jogador", json);
-
-        File.WriteAllText(path, json);
-    }
-
 
 
 

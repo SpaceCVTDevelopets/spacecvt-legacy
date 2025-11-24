@@ -13,7 +13,6 @@ public class JogadorController : MonoBehaviour
 
     public List<GameObject> perguntas = new List<GameObject>();
 
-    public int incremento = 0;
     void Update()
     {
 
@@ -21,10 +20,6 @@ public class JogadorController : MonoBehaviour
         if ( Ativo ){
             
             Jogador player = criaJogador();
-
-            player.SetJogo(incremento);
-
-            incremento++;
             Ativo = false;
             return;
 
@@ -49,8 +44,6 @@ public class JogadorController : MonoBehaviour
         );
 
 
-        // jogador.Save();
-
 
         int pontos = jogador.pontuacaoTotal(); 
 
@@ -58,7 +51,7 @@ public class JogadorController : MonoBehaviour
 
             for(int i = 1; i <= pontos; i++){
                 textoFinal.text = i+" pontos";
-            } // ta dando erro aqui!!!!!!!!!!!!!
+            } 
 
         } else {
             textoFinal.text = "0 pontos";
@@ -70,21 +63,17 @@ public class JogadorController : MonoBehaviour
     }
 
 
-
-
-    public void Restart(){
-        SceneManager.LoadScene("CVTE");
-    }
-
-
-
-
-
     public bool GetAtivo(){
         return Ativo;
     }
     public void SetAtivo(bool ativo){
         Ativo = ativo;
+    }
+
+
+
+    public void Restart(){
+        SceneManager.LoadScene("CVTE");
     }
 
 

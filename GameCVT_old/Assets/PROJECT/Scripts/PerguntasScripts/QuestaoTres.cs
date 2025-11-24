@@ -1,62 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
+using TMPro;
 
-public class QuestaoTres : QuestaoMae
+public class QuestaoTres: QuestaoMae
 {
+    // verificar se todos campos de content foram respondidos
 
     public GameObject perguntas;
+    public GameObject resposta;
 
+    private TMP_Dropdown dropdown;
 
-
-    void Update()
+    void Start()
     {
-        bool acabou = verificaContent();
-
-        if (acabou == true)
-        {
-            perguntas.GetComponent<Pergunta>().play(3);
-            return;
-        }
+        Pontuacao = 0;
+        dropdown = resposta.GetComponent<TMP_Dropdown>();
 
     }
 
-
-    public bool verificaContent()
+    void Update()
     {
 
-        Transform content = transform;
-        bool terminou = false;
 
-        for (int i = 1; i < content.childCount; i++)
-        {
 
-            Transform listItem = content.GetChild(i);
+        dropdown.onValueChanged.AddListener(delegate {
 
-            for (int j = 0; j < listItem.childCount; j++)
-            {
+            Pontuacao = verificaDropDown(dropdown);
+            perguntas.GetComponent<Pergunta>().play(3);
+            return;
+        });
 
-                Transform resposta = listItem.GetChild(0);
-                bool acertou = resposta.GetChild(j).GetComponent<RespostaDois>().Score;
-                terminou = resposta.GetChild(j).GetComponent<RespostaDois>().Valor;
+        
+    }
 
-                //NAO ENTENDO COMO ISSO TA FUNCIONANDO
-                if (acertou)
-                {
-                    Pontuacao = 15;
-                    return true;
-                }
-                else if (terminou)
-                {
-                    return true;
-                }
 
-            }
+    public int verificaDropDown(TMP_Dropdown dropdown){
+
+       
+        if ( dropdown.value == 2 ) {
+            return 5;
         }
 
-
-
-        return terminou;
+        return 0;
     }
 
 }

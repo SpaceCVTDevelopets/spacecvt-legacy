@@ -9,10 +9,6 @@ public class MostrarPontuacao : MonoBehaviour
     public Button botao;
     public GameObject perguntas;
     private bool Acabou = false;
-    void Start()
-    {
-        
-    }
 
 
     void Update()
@@ -27,7 +23,7 @@ public class MostrarPontuacao : MonoBehaviour
     public bool verificaBotao(Button botao){
 
         botao.onClick.AddListener(delegate {
-            perguntas.GetComponent<Pergunta>().play(9);
+            perguntas.GetComponent<Pergunta>().play(7);
             Acabou = true;
         });
 

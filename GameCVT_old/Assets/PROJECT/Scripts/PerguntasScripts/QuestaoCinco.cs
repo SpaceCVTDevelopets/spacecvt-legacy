@@ -2,82 +2,58 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+
 public class QuestaoCinco : QuestaoMae
 {
+
     public GameObject perguntas;
-    public GameObject sliderObj;
-    public TextMeshProUGUI texto;
-    private Slider slider;
-    public GameObject botaoObj; //
-    private Button botao;
+    private List<Toggle> toggles = new List<Toggle>();
 
 
-    public ShowInfo planetInfo = new ShowInfo();
-    private bool Acabou = false;
-    
     void Start()
     {
-
-        if (sliderObj != null && botaoObj != null) {
-            slider = sliderObj.GetComponent<Slider>(); 
-            botao = botaoObj.GetComponent<Button>();
-        }
+        Transform content = transform;
         Pontuacao = 0;
-        slider.value = 0;
-        texto.text = "0°";
+        for (int i = 1; i < content.childCount; i++){
+
+            Transform listItem = content.Find("ListItem"+i+"/OffsetAnchor/BooleanToggle");
+            toggles.Add(listItem.GetComponent<Toggle>());
+
+        }
     }
 
 
     void Update()
     {
-        slider.onValueChanged.AddListener(delegate {
-
-            verificaSlider(slider);
-            
-        });
-
-
-        if ( verificaBotao(slider) ) {
+        if (verificaContent()){
             perguntas.GetComponent<Pergunta>().play(5);
-
             return;
         }
-
-
-    }
-
-
-
-
-    public void verificaSlider(Slider slider){
-
-        texto.text = slider.value.ToString("0")+"°";
-
     }
 
 
 
 
 
-    public bool verificaBotao(Slider slider){
-        
-        botao.onClick.AddListener(delegate {
 
-            int altitudePlaneta = planetInfo.GetAltitudeGeo();
-            
-            if ( slider.value == altitudePlaneta) {
-                Pontuacao = 5;
+     public bool verificaContent(){
 
-            } else {
-                Pontuacao = 0;
+
+        for (int j = 0; j < toggles.Count; j++){
+
+            if (toggles[j].isOn){
+                if (j == 2){
+                    Pontuacao = 25;
+                    return true;
+                }  
+
+                return true;
+                
             }
-              
-            Acabou = true;
 
-        });
+        }
 
-        return Acabou;
+        return false;
 
     }
 }

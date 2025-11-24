@@ -1,114 +1,123 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
+
+
 public class QuestaoUm : QuestaoMae
 {
+    // verificar se todos campos de content foram respondidos
+
     public GameObject perguntas;
-    public List<GameObject> sliderObjs = new List<GameObject>();
-    // public TextMeshProUGUI texto;
-    private List<Slider> sliders = new List<Slider>();
-    public GameObject botaoObj;
-    private Button botao;
-
-
     public List<ShowInfo> planetasInfo = new List<ShowInfo>();
-    private bool acabou = false;
+    [SerializeField] private List<GameObject> enunciados = new List<GameObject>(3);
+    [SerializeField] private List<GameObject> respostas = new List<GameObject>(8);
+
+    private bool[] jaRespondida;
+    private int count = 0; // quantas perguntas já foram respondidas
+
+    
+
 
     void Start()
-    {
-        
-
-        for (int i = 0; i < sliderObjs.Count; i++)
-        {   
-            Transform textTransform = sliderObjs[i].transform.GetChild(2);
-            textTransform.GetComponent<TextMeshProUGUI>().text = "0.0°";
-
-            if (sliderObjs != null)
-            {
-                sliders.Add(sliderObjs[i].GetComponent<Slider>());
-                sliders[i].value = 0.0f;
-            }
-            else
-            {
-                Debug.Log("Slider não encontrado");
-            }
-
-        }
-
-        botao = botaoObj.GetComponent<Button>();
+    {   
         Pontuacao = 0;
-    }
+        jaRespondida = new bool[respostas.Count];
 
-
-    void Update()
-    {
-
-
-        sliders[0].onValueChanged.AddListener(delegate
+        for (int i = 0; i < respostas.Count; i++)
         {
-            verificaSlider(sliders[0]);
-        });
-        sliders[1].onValueChanged.AddListener(delegate
-        {
-            verificaSlider(sliders[1]);
-        });
-        sliders[2].onValueChanged.AddListener(delegate
-        {
-            verificaSlider(sliders[2]);
-        });
-
-        verificaBotao(botao, sliders);
-
-        if (acabou)
-        {
-            perguntas.GetComponent<Pergunta>().play(1);
-            return;
+            VerificaResposta(respostas[i], i); // atribui um listener para cada botão
         }
-
-
     }
 
-    public void verificaSlider (Slider slider) {
 
+    
 
-        float roundedValue = Mathf.Round(slider.value * 10f) / 10f;
-        slider.value = roundedValue; // Atualiza o valor do slider
+    public void VerificaResposta(GameObject resposta, int indice){
 
-        Transform textTransform = slider.transform.GetChild(2);
-
-        textTransform.GetComponent<TextMeshProUGUI>().text = slider.value.ToString("0.0") + "°";
+        Button btn = resposta.transform.GetComponent<Button>();
+        btn.onClick.AddListener(() => OnRespostaClick(indice, resposta));
 
     }
 
 
-    public void verificaBotao(Button botao, List<Slider> sliders)
+
+    private void OnRespostaClick(int index, GameObject resposta)
     {
+        // se já respondeu essa, não faz nada
+        if (jaRespondida[index]) 
+            return;
 
 
-        float slider1 = sliders[0].value;
-        float slider2 = sliders[1].value;
-        float slider3 = sliders[2].value;
+        jaRespondida[index] = true; // marca como respondida
+        greenOrRed(resposta.tag, resposta); 
+        count++;
+        if (count == 4)
+        {
+            Debug.Log(Pontuacao);
+            perguntas.GetComponent<Pergunta>().play(1);
+        }
+    }
 
 
 
 
-        botao.onClick.AddListener(delegate{
 
-            float MagnitudeJupiter = planetasInfo[0].GetMagintude();
-            float MagnitudeMarte = planetasInfo[1].GetMagintude();
-            float MagnitudeVenus = planetasInfo[2].GetMagintude();
 
-            // Tem que ser por text mesmo
-            if (slider1 == MagnitudeJupiter && slider2 == MagnitudeMarte && slider3 == MagnitudeVenus)
-            {
-                Pontuacao = 10;
+    private void greenOrRed(string tag, GameObject obj){
+        switch (tag)
+        {
+            case "Netune":
+            case "Jupiter":
+            case "Saturn":
+            case "Mercury":
+                Pontuacao += 5;
+                green(obj);
+                break;
 
-            }
-            acabou = true;
-        });
+            default:
+                red(obj);
+                break;
+        }
+        
+    }
+
+
+
+
+    public void criaTexto() {
+
+
+        TextMeshProUGUI textoNetuno = enunciados[0].GetComponent<TextMeshProUGUI>();
+        string infoNetuno = planetasInfo[0].GetMagintude().ToString(); 
+        textoNetuno.text = "A magnitude de Netuno é de aproximadamente "+infoNetuno; // Netuno
+
+
+        TextMeshProUGUI textoUrano = enunciados[1].GetComponent<TextMeshProUGUI>();
+        string infoUrano = planetasInfo[1].GetAzimute().ToString();
+        textoUrano.text = "O ângulo de azimute de Urano é aproximadamente "+infoUrano; // Urano
+
+
+        TextMeshProUGUI textoSaturno = enunciados[2].GetComponent<TextMeshProUGUI>();
+        string infoSaturno = planetasInfo[2].GetDistanciaTerra().ToString();
+        textoSaturno.text = "A distância de Saturno em relação a terra é de "+ infoSaturno +" milhões de Km."; // Saturno
+
 
     }
+
+
+
+
+    public void green(GameObject objeto){
+        ColorBlock colors = objeto.GetComponent<Button>().colors;
+        colors.normalColor = Color.green;
+        objeto.GetComponent<Button>().colors = colors;
+    }
+
+    public void red(GameObject objeto){
+        ColorBlock colors = objeto.GetComponent<Button>().colors;
+        colors.normalColor = Color.red;
+        objeto.GetComponent<Button>().colors = colors;
+    }
+
 }
