@@ -12,9 +12,8 @@ public class QuestaoQuatro : QuestaoMae
     public GameObject botaoObj; //
     private Button botao;
 
-
     public ShowInfo planetInfo = new ShowInfo();
-    private bool Acabou = false;
+
     
     void Start()
     {
@@ -26,58 +25,47 @@ public class QuestaoQuatro : QuestaoMae
         Pontuacao = 0;
         slider.value = 0;
         texto.text = "0°";
+
+        VerificaResposta();
+        FormataSlider();
+
     }
 
 
-    void Update()
+
+
+    public void VerificaResposta(){
+        
+        botao.onClick.AddListener(() => OnRespostaClick());
+
+    }
+
+
+    public void OnRespostaClick()
     {
+        int altitudePlaneta = planetInfo.GetAltitudeGeo();
+            
+        if ( slider.value == altitudePlaneta) {
+            Pontuacao = 20;
+
+        } 
+        Debug.Log(Pontuacao);
+        perguntas.GetComponent<Pergunta>().play(4);
+            
+    }
+
+
+
+
+    public void FormataSlider(){
+
         slider.onValueChanged.AddListener(delegate {
 
-            verificaSlider(slider);
+            texto.text = slider.value.ToString("0")+"°";
             
         });
 
-
-        if ( verificaBotao(slider) ) {
-            perguntas.GetComponent<Pergunta>().play(4);
-
-            return;
-        }
-
-
     }
 
 
-
-
-    public void verificaSlider(Slider slider){
-
-        texto.text = slider.value.ToString("0")+"°";
-
-    }
-
-
-
-
-
-    public bool verificaBotao(Slider slider){
-        
-        botao.onClick.AddListener(delegate {
-
-            int altitudePlaneta = planetInfo.GetAltitudeGeo();
-            
-            if ( slider.value == altitudePlaneta) {
-                Pontuacao = 20;
-
-            } else {
-                Pontuacao = 0;
-            }
-              
-            Acabou = true;
-
-        });
-
-        return Acabou;
-
-    }
 }

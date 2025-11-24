@@ -17,33 +17,29 @@ public class QuestaoTres: QuestaoMae
     {
         Pontuacao = 0;
         dropdown = resposta.GetComponent<TMP_Dropdown>();
+        VerificaResposta();
 
     }
 
-    void Update()
+
+
+    public void VerificaResposta()
     {
-
-
-
-        dropdown.onValueChanged.AddListener(delegate {
-
-            Pontuacao = verificaDropDown(dropdown);
-            perguntas.GetComponent<Pergunta>().play(3);
-            return;
-        });
-
-        
+        dropdown.onValueChanged.AddListener(delegate { verificaDropDown(); }); //por algum motivo n consegui colocar arrowFunction nesse listener, o OnValueChanged
     }
 
 
-    public int verificaDropDown(TMP_Dropdown dropdown){
+
+    public void verificaDropDown(){
 
        
         if ( dropdown.value == 2 ) {
-            return 20;
+            Pontuacao = 20;
         }
+        Debug.Log(Pontuacao);
+        perguntas.GetComponent<Pergunta>().play(3);
 
-        return 0;
+
     }
 
 }
