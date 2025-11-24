@@ -16,7 +16,7 @@ public class ScoreManager : MonoBehaviour
     private string time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
     [SerializeField] private string username;
-    [SerializeField] private int finalScore; 
+    private int finalScore; 
     [SerializeField] private List<int> pontos = new List<int>(5); // pontos individuais
 
     public List<int> Pontos {
@@ -32,8 +32,10 @@ public class ScoreManager : MonoBehaviour
         // StartCoroutine(GetDataBaseInfo());
     }
 
-    public void SubmitScore()
+    public void SubmitScore(int pontos)
     {
+        finalScore = pontos;
+        StartCoroutine(GetDataBaseInfo());
         StartCoroutine(SendInfoToDataBase());
     }
 

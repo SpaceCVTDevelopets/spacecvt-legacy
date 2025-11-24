@@ -9,10 +9,15 @@ public class JogadorController : MonoBehaviour
 {
 
     public TextMeshProUGUI textoFinal;
-    public bool Ativo = false;
 
     public List<GameObject> perguntas = new List<GameObject>();
+    [SerializeField] private ScoreManager scoreManager;
 
+
+    void Awake()
+    {
+        scoreManager = GameObject.Find("GameController").GetComponent<ScoreManager>();
+    }
 
 
     public Jogador criaJogador(){
@@ -38,7 +43,7 @@ public class JogadorController : MonoBehaviour
             textoFinal.text = "0 pontos";
         }
         
-
+        scoreManager.SubmitScore(pontos);
         return jogador;
 
     }
