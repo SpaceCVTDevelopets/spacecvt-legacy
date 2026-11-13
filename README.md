@@ -1,6 +1,6 @@
 # 🪐 Space-CVT (Versão Legada)
 
-> **⚠️ Aviso:** Este repositório contém o código-fonte de uma **versão antiga/legada** do projeto Space-CVT (`SpaceCVT_old`). Ele é mantido aqui para fins de histórico, versionamento e consulta.
+> **⚠️ Aviso:** Este repositório contém o código-fonte de uma **versão antiga/legada** do projeto Space-CVT (`spacecvt-legacy`). Ele é mantido aqui para fins de histórico, versionamento e consulta.
 
 O **Space-CVT** é uma plataforma de Realidade Virtual (RV) desenvolvida com o objetivo de apoiar o ensino e validar os conhecimentos de Astronomia e Astronáutica de crianças e adolescentes. O projeto foi concebido para atender os participantes das oficinas do projeto *Dia Astronômico*, realizado no **Centro Vocacional Tecnológico Espacial Augusto Severo (CVT-E)**, no Centro de Lançamento da Barreira do Inferno (CLBI).
 
